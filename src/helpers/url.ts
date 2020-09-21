@@ -49,5 +49,5 @@ export function buildURL(url: string, params?: any): string {
         url += url.includes('?') ? '&' : '?'  + serializedParams
     }
 
-    return url;
+    return url
 }
