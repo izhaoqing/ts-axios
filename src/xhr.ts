@@ -21,6 +21,10 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
         request.onreadystatechange = () => {
             if (request.readyState !== 4) return
+            // 异常情况 status 也是 0，因为请求完成之前是 0，出现异常后没再改变
+            // https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/status
+            if (request.status === 0) return
+
             const responseHeader = request.getAllResponseHeaders()
             const responseData = responseType !== 'text' ? request.response : request.responseText
             const response: AxiosResponse = {
@@ -31,7 +35,12 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
                 config,
                 request
             }
-            resolve(response)
+
+            if (request.status >= 200 && request.status < 300) {
+                resolve(response)
+            } else {
+                reject(new Error(`Request failed with status code ${request.status}`))
+            }
         }
 
         // 网络错误
