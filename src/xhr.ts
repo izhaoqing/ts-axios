@@ -4,12 +4,17 @@ import { parseHeaders } from './helpers/headers'
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     return new Promise((resolve, reject) => {
 
-        const { data = null, method = 'get', url, headers, responseType } = config
+        const { data = null, method = 'get', url, headers, responseType, timeout } = config
 
         const request = new XMLHttpRequest()
 
         if (responseType) {
             request.responseType = responseType
+        }
+
+        // timeout 默认是0，表示不超时，单位是毫秒
+        if (timeout) {
+            request.timeout = timeout
         }
 
         request.open(method.toUpperCase(), url, true)
@@ -27,6 +32,16 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
                 request
             }
             resolve(response)
+        }
+
+        // 网络错误
+        request.onerror = () => {
+            reject(new Error('Network Error'))
+        }
+
+        // 超时
+        request.ontimeout = () => {
+            reject(new Error(`Timeout of ${timeout} ms exceeded`))
         }
 
         Object.keys(headers).forEach((name) => {
