@@ -45,6 +45,8 @@ export interface Axios {
 }
 
 // Axios 混合接口，包含父级类的所有属性/方法
+// 函数重载 支持两种参数
 export interface AxiosInstance extends Axios {
   (config: AxiosRequestConfig): AxiosPromise
+  (url: string, config: AxiosRequestConfig): AxiosPromise
 }
