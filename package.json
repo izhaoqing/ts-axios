@@ -9,10 +9,10 @@
   "files": [
     "dist"
   ],
-  "author": "zhaoqing <zhao.qing@trs.com.cn>",
+  "author": "iamzhaoqing <zhaoq0104@163.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:iamzhaoqing/ts-axios.git"
   },
   "license": "MIT",
   "engines": {

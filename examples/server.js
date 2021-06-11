@@ -67,9 +67,15 @@ router.get('/extend/get', (req, res) => {
     })
 })
 
+router.get('/interceptor/get', (req, res) => {
+    res.json({
+        msg: 'hello'
+    })
+})
+
 app.use(router)
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8010
 module.exports = app.listen(port, () => {
     console.log(`Server listening on http://localhost:${port}, Ctrl+C to stop`)
 })
