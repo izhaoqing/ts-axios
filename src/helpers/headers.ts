@@ -1,4 +1,5 @@
-import { isPlainObject } from './utils'
+import { Method } from '../types'
+import { deepMerge, isPlainObject } from './utils'
 
 const up = (str: string): string => str.toUpperCase()
 
@@ -41,4 +42,12 @@ export function parseHeaders(headers: string): any {
         parsed[key] = val
     })
     return parsed
+}
+
+export function flattenHeaders(headers: any, method: Method): any {
+    if (!headers) return headers
+    headers = deepMerge(headers, headers.common, headers[method])
+    const keys = ['delete', 'get', 'post', 'head', 'options', 'put', 'patch', 'common']
+    keys.forEach(k => delete headers[k])
+    return headers;
 }

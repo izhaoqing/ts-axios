@@ -73,6 +73,12 @@ router.get('/interceptor/get', (req, res) => {
     })
 })
 
+router.post('/config/post', (req, res) => {
+    res.json({
+        msg: 'hello'
+    })
+})
+
 app.use(router)
 
 const port = process.env.PORT || 8010
