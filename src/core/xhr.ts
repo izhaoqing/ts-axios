@@ -5,7 +5,7 @@ import { createError } from '../helpers/error'
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     return new Promise((resolve, reject) => {
 
-        const { data = null, method = 'get', url, headers, responseType, timeout, cancelToken } = config
+        const { data = null, method = 'get', url, headers, responseType, timeout, cancelToken, withCredential } = config
 
         const request = new XMLHttpRequest()
 
@@ -26,6 +26,10 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         // timeout 默认是0，表示不超时，单位是毫秒
         if (timeout) {
             request.timeout = timeout
+        }
+
+        if (withCredential) {
+            request.withCredentials = true
         }
 
         request.onreadystatechange = () => {
