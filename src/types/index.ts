@@ -18,10 +18,12 @@ export interface AxiosRequestConfig {
   headers?: any
   responseType?: XMLHttpRequestResponseType
   timeout?: number
-  transformRequest?: AxiosTransformer | AxiosTransformer[],
+  transformRequest?: AxiosTransformer | AxiosTransformer[]
   transformResponse?: AxiosTransformer | AxiosTransformer[]
   cancelToken?: CancelToken
   withCredential?: boolean
+  xsrfCookieName?: string
+  xsrfHeaderName?: string
   [propName: string]: any,
 }
 
