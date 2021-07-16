@@ -1,5 +1,5 @@
-import { isPlainObject, deepMerge } from "../helpers/utils";
-import { AxiosRequestConfig } from "../types";
+import { isPlainObject, deepMerge } from "../helpers/utils"
+import { AxiosRequestConfig } from "../types"
 
 export default function mergeConfig(defaultCon: AxiosRequestConfig, paramsCon?: AxiosRequestConfig): AxiosRequestConfig {
     if (!paramsCon) {
