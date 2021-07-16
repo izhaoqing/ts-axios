@@ -46,7 +46,7 @@ export function parseHeaders(headers: string): any {
 
 export function flattenHeaders(headers: any, method: Method): any {
     if (!headers) return headers
-    headers = deepMerge(headers, headers.common, headers[method])
+    headers = deepMerge(headers.common, headers[method], headers)
     const keys = ['delete', 'get', 'post', 'head', 'options', 'put', 'patch', 'common']
     keys.forEach(k => delete headers[k])
     return headers

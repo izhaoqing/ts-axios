@@ -13,7 +13,7 @@ export default function mergeConfig(defaultCon: AxiosRequestConfig, paramsCon?: 
     keysFromV2.forEach(k => {
         strategyMap[k] = fromV2Strategy
     })
-    const keysDeepMerge = ['headers']
+    const keysDeepMerge = ['headers', 'auth']
     keysDeepMerge.forEach(k => {
         strategyMap[k] = deepMergeStrategy
     })
