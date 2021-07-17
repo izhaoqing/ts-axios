@@ -66,6 +66,7 @@ export interface Axios {
   post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
   put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
   patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
+  getUri(config?: AxiosRequestConfig): string
   interceptors: {
     request: AxiosInterceptorManager<AxiosRequestConfig>
     response: AxiosInterceptorManager<AxiosResponse>
@@ -77,6 +78,11 @@ export interface Axios {
 export interface AxiosInstance extends Axios {
   <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
   <T = any>(url: string, config: AxiosRequestConfig): AxiosPromise<T>
+}
+
+// Axios 类类型
+export interface AxiosClassStatic {
+  new(config: AxiosRequestConfig): Axios
 }
 
 // 拦截器
@@ -100,6 +106,9 @@ export interface AxiosStatic extends AxiosInstance {
   CancelToken: CancelTokenStatic
   Cancel: CancelStatic
   isCancel: (value: any) => boolean
+  all<T>(promises: Array<Promise<T>>): Promise<T[]>
+  spread<T, R>(cb: (...args: T[]) => R): (arr: T[]) => R
+  Axios: AxiosClassStatic
 }
 
 // 请求取消
