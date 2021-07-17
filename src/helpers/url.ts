@@ -78,3 +78,12 @@ function resolveURL(url: string): URLOrigin {
     const { protocol, host } = urlParsingNode
     return { protocol, host }
 }
+
+// 判断是否是绝对地址
+export function isAbsoluteURL(url: string) {
+    return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
+}
+// 拼接 url
+export function combineURL(baseURL: string, relativeURL?: string) {
+    return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL
+}
