@@ -50,16 +50,12 @@
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testEnvironment": "jsdom",
+    "testRegex": "/test/.*\\.(test|spec)\\.(ts)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
     ],
     "coverageThreshold": {
       "global": {
@@ -70,7 +66,11 @@
       }
     },
     "collectCoverageFrom": [
-      "src/*.{js,ts}"
+      "src/*.{js,ts}",
+      "src/**/*.{js,ts}"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/boot.ts"
     ]
   },
   "prettier": {
@@ -96,8 +96,8 @@
     "cz-conventional-changelog": "^2.1.0",
     "express": "^4.17.1",
     "husky": "^1.0.1",
-    "jest": "^23.6.0",
-    "jest-config": "^23.6.0",
+    "jest": "^27.0.6",
+    "jest-config": "^27.0.6",
     "lint-staged": "^8.0.0",
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.14.3",
@@ -113,9 +113,9 @@
     "semantic-release": "^15.9.16",
     "shelljs": "^0.8.3",
     "travis-deploy-once": "^5.0.9",
-    "ts-jest": "^23.10.2",
+    "ts-jest": "^27.0.3",
     "ts-loader": "^8.0.2",
-    "ts-node": "^7.0.1",
+    "ts-node": "^9.0.0",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
