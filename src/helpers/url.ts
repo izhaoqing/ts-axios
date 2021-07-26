@@ -46,7 +46,7 @@ export function buildURL(url: string, params?: any, paramsSerializer?: (params: 
 
             values.forEach((value) => {
                 if (isDate(value)) {
-                    value = value.toUTCString()
+                    value = value.toISOString()
                 } else if(isPlainObject(value)) {
                     value = JSON.stringify(value)
                 }
@@ -59,7 +59,7 @@ export function buildURL(url: string, params?: any, paramsSerializer?: (params: 
     if (serializedParams) {
         const markIndex = url.indexOf('#')
         if (markIndex !== -1) url = url.slice(0, markIndex)
-        url += url.includes('?') ? '&' : '?'  + serializedParams
+        url += (url.includes('?') ? '&' : '?')  + serializedParams
     }
     return url
 }

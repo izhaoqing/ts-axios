@@ -5,6 +5,9 @@ const up = (str: string): string => str.toUpperCase()
 
 // headerName 大小写处理
 function normalizeHeaderName(header: any, normalizedName: string): void {
+    if (!header) {
+        return
+    }
     if (header[normalizedName]) {
         return
     }
@@ -36,7 +39,7 @@ export function parseHeaders(headers: string): any {
         let [key, ...val] = line.split(':')
         key = key.trim().toLowerCase()
         if (!key) return
-        parsed[key] = val.join(';').trim()
+        parsed[key] = val.join(':').trim()
     })
     return parsed
 }
