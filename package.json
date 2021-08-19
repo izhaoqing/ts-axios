@@ -24,7 +24,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
-    "jest": "jest",
+    "jest": "jest /test/requests.spec.ts",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
@@ -47,33 +47,6 @@
       "path": "node_modules/cz-conventional-changelog"
     }
   },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "ts-jest"
-    },
-    "testEnvironment": "jsdom",
-    "testRegex": "/test/.*\\.(test|spec)\\.(ts)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
-    "collectCoverageFrom": [
-      "src/*.{js,ts}",
-      "src/**/*.{js,ts}"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/test/boot.ts"
-    ]
-  },
   "prettier": {
     "semi": false,
     "singleQuote": true
@@ -86,6 +59,7 @@
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
+    "@types/jasmine-ajax": "^3.1.9",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.11.0",
     "atob": "^2.1.2",
@@ -97,6 +71,8 @@
     "cz-conventional-changelog": "^2.1.0",
     "express": "^4.17.1",
     "husky": "^1.0.1",
+    "jasmine-ajax": "^4.0.0",
+    "jasmine-core": "3.4.0",
     "jest": "^27.0.6",
     "jest-config": "^27.0.6",
     "lint-staged": "^8.0.0",

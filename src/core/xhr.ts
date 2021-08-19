@@ -9,7 +9,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     return new Promise((resolve, reject) => {
         const {
             data = null,
-            method = 'get',
+            method,
             url,
             headers,
             responseType,
@@ -26,7 +26,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
         const request = new XMLHttpRequest()
 
-        request.open(method.toUpperCase(), url!, true)
+        request.open(method!.toUpperCase(), url!, true)
 
         configureRequest()
         addEvents()
@@ -112,7 +112,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     
             Object.keys(headers).forEach((name) => {
                 // 没有 data 时，Content-Type 没有意义，可以删掉
-                if (data === null && name.toLowerCase() === 'Content-type') {
+                if (data === null && name.toLowerCase() === 'content-type') {
                     delete headers[name]
                 } else {
                     request.setRequestHeader(name, headers[name])

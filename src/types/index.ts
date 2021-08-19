@@ -77,7 +77,7 @@ export interface Axios {
 // 函数重载 支持两种参数
 export interface AxiosInstance extends Axios {
   <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
-  <T = any>(url: string, config: AxiosRequestConfig): AxiosPromise<T>
+  <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
 
 // Axios 类类型
