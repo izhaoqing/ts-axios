@@ -1,7 +1,5 @@
 # ts-axios
-refectory axios with ts
-
-工程由 typescript-library-starter 创建
+refectory axios with ts. 此工程由 typescript-library-starter 创建。
 
 ## webpackDevMiddleware
 
@@ -18,7 +16,7 @@ const isObject = obj => typeof obj === 'object' && obj !== null
 const isPlainObject = obj => Object.toString.call(obj) === '[object Object]'
 ```
 
-#### 声明空对象
+### 声明空对象
 
 先声明一个空对象，在给声明的对象添加属性，在 ts 中会出现错误提示。[对象字面量的惰性初始化](https://jkchao.github.io/typescript-book-chinese/tips/lazyObjectLiteralInitialization.html) 提供了几种解决方法。
 
@@ -49,7 +47,7 @@ post 请求中，传给 `send` 方法的数据可以有几种类型 [mdn-XMLHttp
 
 ### Exceeded timeout
 
-测试用例花费的时间超过默认的5s，会报错导致测试失败，需要在配置中设置超时时常。
+测试用例花费的时间超过默认的5s，会报错导致测试失败，需要在配置中设置超时时长。
 
 ```
 thrown: "Exceeded timeout of 5000 ms for a test.
@@ -99,4 +97,11 @@ getAjaxRequest().then(request => {
 })
 ```
 
-由于 `request.responseTimeout` 方法内部依赖了 `jasmine.clock` 方法会导致运行失败，这里我直接用了 `request.eventBus.trigger('timeout')` 方法触发了 timeout 事件。
+由于 `request.responseTimeout` 方法内部依赖了 `jasmine.clock` 方法会导致运行失败，可以直接用 `request.eventBus.trigger('timeout')` 方法触发 timeout 事件。
+
+```js
+getAjaxRequest().then(request => {
+    // 模拟请求超时
+    request.eventBus.trigger('timeout')
+})
+```
