@@ -15,7 +15,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
             responseType,
             timeout,
             cancelToken,
-            withCredential,
+            withCredentials,
             xsrfCookieName,
             xsrfHeaderName,
             onDownloadProgress,
@@ -45,7 +45,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
                 request.timeout = timeout
             }
 
-            if (withCredential) {
+            if (withCredentials) {
                 request.withCredentials = true
             }
 
@@ -98,7 +98,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         }
 
         function processHeaders() {
-            if ((withCredential || isURLSameOrigin(url!)) && xsrfCookieName) {
+            if ((withCredentials || isURLSameOrigin(url!)) && xsrfCookieName) {
                 const xsrfValue = cookie.read(xsrfCookieName)
                 if (xsrfValue) {
                     headers[xsrfHeaderName!] = xsrfValue

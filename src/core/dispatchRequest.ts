@@ -31,7 +31,7 @@ function processConfig(config: AxiosRequestConfig): void {
 export function transformUrl(config:AxiosRequestConfig): string {
     const { params, paramsSerializer, baseURL } = config
     let { url } = config
-    if (baseURL && isAbsoluteURL(url!)) {
+    if (baseURL && !isAbsoluteURL(url!)) {
         url = combineURL(baseURL, url)
     }
     return buildURL(url!, params, paramsSerializer)

@@ -1,4 +1,4 @@
-# ts-axios
+# Ts-Axios
 refectory axios with ts. 此工程由 typescript-library-starter 创建。
 
 ## webpackDevMiddleware
@@ -39,7 +39,50 @@ post 请求中，传给 `send` 方法的数据可以有几种类型 [mdn-XMLHttp
 
 ## Jest
 
-单元测试使用 Jest，为了测试 Ajax，使用了 jasmine-ajax 插件。
+单元测试作用是保证重构或者增加新的需求不会导致先前的代码出现bug。此项目使用 Jest，为了测试 Ajax，使用了 jasmine-ajax 插件。
+
+### Getting Started
+
++ [jest](https://github.com/facebook/jest): 单元测试框架，内置了自带断言、测试覆盖率等常用工具。
++ [ts-jest](https://github.com/kulshekhar/ts-jest): Jest 转换工具，实现用 ts 编写测试代码
++ jasmine-core jasmine-ajax: 模拟 ajax 请求
+
+Jest 配置文件可以放在 package.json 中，也可以 jest.config.js 单独存在。
+
+```js
+// jest.config.js
+module.exports = {
+  transform: {
+    // 用 ts-jest 作为转换器，处理 ts/tsx 文件
+    '.(ts|tsx)': 'ts-jest'
+  },
+  // browser-like environment
+  testEnvironment: 'jsdom',
+  // Jest 用来检测测试文件的模式
+  testRegex: '/test/.*\\.(test|spec)\\.(ts)$',
+  // 文件扩展名
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
+  // 需要覆盖率忽略的路径
+  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
+  // 覆盖率阈值
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 95,
+      lines: 95,
+      statements: 95
+    }
+  },
+  testRunner: 'jest-jasmine2',
+  // 指定覆盖率信息的收集来源
+  collectCoverageFrom: ['src/*.{js,ts}', 'src/**/*.{js,ts}'],
+  // 测试框架安装后立即执行的代码文件列表
+  setupFilesAfterEnv: ['<rootDir>/test/boot.ts'],
+  testTimeout: 20000
+}
+```
+
+typescript-library-starter 创建项目包含了 Jest 的安装和配置，但需要将包升级。
 
 ### 测试异步代码
 
