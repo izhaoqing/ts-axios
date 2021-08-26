@@ -19,13 +19,13 @@ export default function mergeConfig(defaultCon: AxiosRequestConfig, paramsCon?: 
     })
     
     for(let k in paramsCon) {
-        mergeFiled(k)
+        mergeField(k)
     }
     for(let k in defaultCon) {
-        if(!paramsCon[k]) mergeFiled(k)
+        if(!paramsCon[k]) mergeField(k)
     }
 
-    function mergeFiled(key: string): void {
+    function mergeField(key: string): void {
         const strategy = strategyMap[key] || defaultStrategy
         config[key] = strategy(defaultCon[key], paramsCon![key])
     }
@@ -42,7 +42,7 @@ export default function mergeConfig(defaultCon: AxiosRequestConfig, paramsCon?: 
             return v2
         } else if (isPlainObject(v1)) {
             return deepMerge(v1)
-        } else if (v1 !== undefined) {
+        } else {
             return v1
         }
     }
