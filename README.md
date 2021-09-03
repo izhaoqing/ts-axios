@@ -148,3 +148,7 @@ getAjaxRequest().then(request => {
     request.eventBus.trigger('timeout')
 })
 ```
+
+### fail 方法
+
+在用例中可以直接使用 `fail` 方法，表示一个测试的失败。
