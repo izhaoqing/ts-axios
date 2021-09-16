@@ -26,7 +26,19 @@ describe('progress', () => {
         })
     })
 
-    // test('should add a upload progress handler', () => {
-    //     const progressSpy = jest.fn()
-    // })
+    test('should add a upload progress handler', () => {
+        const progressSpy = jest.fn()
+
+        axios('/foo', {
+            onUploadProgress: progressSpy
+        })
+
+        getAjaxRequest().then(req => {
+            req.respondWith({
+                status: 200,
+                responseText: '{"foo": "bar"}'
+            })
+            expect(progressSpy).toHaveBeenCalled()
+        })
+    })
 })

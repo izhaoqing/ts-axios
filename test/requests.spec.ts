@@ -177,4 +177,30 @@ describe('requests', () => {
             done()
         })
     })
+
+    test('should support array buffer response', done => {
+        function str2ab(str: string) {
+            const buff = new ArrayBuffer(str.length * 2)
+            const view = new Uint16Array(buff)
+            for (let i = 0; i < str.length; i++) {
+                view[i] = str.charCodeAt(i)
+            }
+            return buff
+        }
+
+        axios.get('/foo', {
+            responseType: 'arraybuffer'
+        }).then(res => {
+            expect(res.data.byteLength).toBe(22)
+            done()
+        })
+
+        getAjaxRequest().then(req => {
+            req.respondWith({
+                status: 200,
+                // @ts-ignore
+                response: str2ab('Hello world')
+            })
+        })
+    })
 })

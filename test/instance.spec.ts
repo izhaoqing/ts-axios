@@ -47,6 +47,42 @@ describe('instance', () => {
         })
     })
 
+    test('should make a head request', () => {
+        const instance = axios.create()
+        instance.head('/foo')
+
+        return getAjaxRequest().then(req => {
+            expect(req.method).toBe('HEAD')
+        })
+    })
+
+    test('should make a put request', () => {
+        const instance = axios.create()
+        instance.put('/foo')
+
+        return getAjaxRequest().then(req => {
+            expect(req.method).toBe('PUT')
+        })
+    })
+
+    test('should make a patch request', () => {
+        const instance = axios.create()
+        instance.patch('/foo')
+
+        return getAjaxRequest().then(req => {
+            expect(req.method).toBe('PATCH')
+        })
+    })
+
+    test('should make a options request', () => {
+        const instance = axios.create()
+        instance.options('/foo')
+
+        return getAjaxRequest().then(req => {
+            expect(req.method).toBe('OPTIONS')
+        })
+    })
+
     test('should use instance options', () => {
         const instance = axios.create({ timeout: 2000 })
         instance.delete('/foo')
