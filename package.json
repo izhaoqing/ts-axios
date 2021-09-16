@@ -1,5 +1,5 @@
 {
-  "name": "ts-axios",
+  "name": "ts-axios-browser",
   "version": "0.0.1",
   "description": "",
   "keywords": [],
@@ -9,10 +9,10 @@
   "files": [
     "dist"
   ],
-  "author": "iamzhaoqing <zhaoq0104@163.com>",
+  "author": "izhaoqing <zhaoq0104@163.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:iamzhaoqing/ts-axios.git"
+    "url": "git@github.com:izhaoqing/ts-axios.git"
   },
   "license": "MIT",
   "engines": {
@@ -21,12 +21,14 @@
   "scripts": {
     "dev": "node examples/server.js",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist docs",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
     "test:prod": "npm run lint && npm run test -- --no-cache",
+    "prepub": "npm run test:prod && npm run build",
+    "pub": "sh release.sh",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "commit": "git-cz",
