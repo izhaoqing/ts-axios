@@ -1,0 +1,97 @@
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ts-axios</title><meta name="description" content="Documentation for ts-axios"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">ts-axios</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>ts-axios</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#ts-axios" id="ts-axios" style="color: inherit; text-decoration: none;">
+  <h1>Ts-Axios</h1>
+</a>
+<p>refectory axios with ts. 此工程由 typescript-library-starter 创建。</p>
+
+<a href="#webpackdevmiddleware" id="webpackdevmiddleware" style="color: inherit; text-decoration: none;">
+  <h2>webpackDevMiddleware</h2>
+</a>
+<p>需要一个开发服务器，和一个接口服务器，请求还会出现跨域问题，使用 webpackDevMiddleware 可以只开一个服务器。</p>
+
+<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
+  <h2>Typescript</h2>
+</a>
+
+<a href="#判断对象" id="判断对象" style="color: inherit; text-decoration: none;">
+  <h3>判断对象</h3>
+</a>
+<p>判断是否是一个对象可以使用 <code>typeof obj === &#39;object&#39;</code>, 时间对象，正则对象，null等都会返回 true，如果需要判断是否是一个 json 对象，可以使用 <code>Object.toString.call(obj) === &#39;[object Object]&#39;</code>。</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">isObject</span><span class="hl-1"> = </span><span class="hl-3">obj</span><span class="hl-1"> </span><span class="hl-0">=&gt;</span><span class="hl-1"> </span><span class="hl-0">typeof</span><span class="hl-1"> </span><span class="hl-3">obj</span><span class="hl-1"> === </span><span class="hl-4">&#39;object&#39;</span><span class="hl-1"> &amp;&amp; </span><span class="hl-3">obj</span><span class="hl-1"> !== </span><span class="hl-0">null</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">isPlainObject</span><span class="hl-1"> = </span><span class="hl-3">obj</span><span class="hl-1"> </span><span class="hl-0">=&gt;</span><span class="hl-1"> </span><span class="hl-5">Object</span><span class="hl-1">.</span><span class="hl-3">toString</span><span class="hl-1">.</span><span class="hl-2">call</span><span class="hl-1">(</span><span class="hl-3">obj</span><span class="hl-1">) === </span><span class="hl-4">&#39;[object Object]&#39;</span>
+</code></pre>
+
+<a href="#声明空对象" id="声明空对象" style="color: inherit; text-decoration: none;">
+  <h3>声明空对象</h3>
+</a>
+<p>先声明一个空对象，在给声明的对象添加属性，在 ts 中会出现错误提示。<a href="https://jkchao.github.io/typescript-book-chinese/tips/lazyObjectLiteralInitialization.html">对象字面量的惰性初始化</a> 提供了几种解决方法。</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-6">foo</span><span class="hl-1"> = {}</span><br/><span class="hl-3">foo</span><span class="hl-1">.</span><span class="hl-3">bar</span><span class="hl-1"> = </span><span class="hl-7">123</span><span class="hl-1"> </span><span class="hl-8">// Error: Property &#39;bar&#39; does not exist on type &#39;{}&#39;</span>
+</code></pre>
+<p>还可以在声明时使用 <code>Object.create</code>。</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-6">foo</span><span class="hl-1"> = </span><span class="hl-5">Object</span><span class="hl-1">.</span><span class="hl-2">create</span><span class="hl-1">(</span><span class="hl-0">null</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#ajax" id="ajax" style="color: inherit; text-decoration: none;">
+  <h2>Ajax</h2>
+</a>
+
+<a href="#处理body" id="处理body" style="color: inherit; text-decoration: none;">
+  <h3>处理body</h3>
+</a>
+<p>post 请求中，传给 <code>send</code> 方法的数据可以有几种类型 <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send">mdn-XMLHttpRequest.send()</a>，但是不包括 json 对象，需要转成字符串。 将 data 转成字符串后，服务端并不能正常解析数据(req.body 为 {})，因为没有正确地设置 <code>Content-Type = &#39;application/json;charset=utf-8&#39;</code>。</p>
+
+<a href="#jest" id="jest" style="color: inherit; text-decoration: none;">
+  <h2>Jest</h2>
+</a>
+<p>单元测试作用是保证重构或者增加新的需求不会导致先前的代码出现bug。此项目使用 Jest，为了测试 Ajax，使用了 jasmine-ajax 插件。</p>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h3>Getting Started</h3>
+</a>
+<ul>
+<li><a href="https://github.com/facebook/jest">jest</a>: 单元测试框架，内置了自带断言、测试覆盖率等常用工具。</li>
+<li><a href="https://github.com/kulshekhar/ts-jest">ts-jest</a>: Jest 转换工具，实现用 ts 编写测试代码</li>
+<li>jasmine-core jasmine-ajax: 模拟 ajax 请求</li>
+</ul>
+<p>Jest 配置文件可以放在 package.json 中，也可以 jest.config.js 单独存在。</p>
+<pre><code class="language-js"><span class="hl-8">// jest.config.js</span><br/><span class="hl-5">module</span><span class="hl-1">.</span><span class="hl-5">exports</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-3">transform:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-8">// 用 ts-jest 作为转换器，处理 ts/tsx 文件</span><br/><span class="hl-1">    </span><span class="hl-4">&#39;.(ts|tsx)&#39;</span><span class="hl-3">:</span><span class="hl-1"> </span><span class="hl-4">&#39;ts-jest&#39;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-8">// browser-like environment</span><br/><span class="hl-1">  </span><span class="hl-3">testEnvironment:</span><span class="hl-1"> </span><span class="hl-4">&#39;jsdom&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">// Jest 用来检测测试文件的模式</span><br/><span class="hl-1">  </span><span class="hl-3">testRegex:</span><span class="hl-1"> </span><span class="hl-4">&#39;/test/.*</span><span class="hl-9">\\</span><span class="hl-4">.(test|spec)</span><span class="hl-9">\\</span><span class="hl-4">.(ts)$&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">// 文件扩展名</span><br/><span class="hl-1">  </span><span class="hl-3">moduleFileExtensions:</span><span class="hl-1"> [</span><span class="hl-4">&#39;ts&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;tsx&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;js&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">  </span><span class="hl-8">// 需要覆盖率忽略的路径</span><br/><span class="hl-1">  </span><span class="hl-3">coveragePathIgnorePatterns:</span><span class="hl-1"> [</span><span class="hl-4">&#39;/node_modules/&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;/test/&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">  </span><span class="hl-8">// 覆盖率阈值</span><br/><span class="hl-1">  </span><span class="hl-3">coverageThreshold:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">global:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-3">branches:</span><span class="hl-1"> </span><span class="hl-7">90</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-3">functions:</span><span class="hl-1"> </span><span class="hl-7">95</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-3">lines:</span><span class="hl-1"> </span><span class="hl-7">95</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-3">statements:</span><span class="hl-1"> </span><span class="hl-7">95</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-3">testRunner:</span><span class="hl-1"> </span><span class="hl-4">&#39;jest-jasmine2&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-8">// 指定覆盖率信息的收集来源</span><br/><span class="hl-1">  </span><span class="hl-3">collectCoverageFrom:</span><span class="hl-1"> [</span><span class="hl-4">&#39;src/*.{js,ts}&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;src/**/*.{js,ts}&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">  </span><span class="hl-8">// 测试框架安装后立即执行的代码文件列表</span><br/><span class="hl-1">  </span><span class="hl-3">setupFilesAfterEnv:</span><span class="hl-1"> [</span><span class="hl-4">&#39;&lt;rootDir&gt;/test/boot.ts&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">  </span><span class="hl-3">testTimeout:</span><span class="hl-1"> </span><span class="hl-7">20000</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>typescript-library-starter 创建项目包含了 Jest 的安装和配置，但需要将包升级。</p>
+
+<a href="#测试异步代码" id="测试异步代码" style="color: inherit; text-decoration: none;">
+  <h3>测试异步代码</h3>
+</a>
+<p><a href="https://jestjs.io/docs/asynchronous">Testing Asynchronous Code</a>，最简单的方式是使用 <code>done</code> 回调函数，或者直接返回一个 Promise。</p>
+
+<a href="#exceeded-timeout" id="exceeded-timeout" style="color: inherit; text-decoration: none;">
+  <h3>Exceeded timeout</h3>
+</a>
+<p>测试用例花费的时间超过默认的5s，会报错导致测试失败，需要在配置中设置超时时长。</p>
+<pre><code><span class="hl-10">thrown</span><span class="hl-1">: </span><span class="hl-4">&quot;Exceeded timeout of 5000 ms for a test</span><span class="hl-11">.</span><br/><span class="hl-3">Use</span><span class="hl-1"> </span><span class="hl-3">jest</span><span class="hl-1">.</span><span class="hl-2">setTimeout</span><span class="hl-1">(</span><span class="hl-3">newTimeout</span><span class="hl-1">) </span><span class="hl-3">to</span><span class="hl-1"> </span><span class="hl-3">increase</span><span class="hl-1"> </span><span class="hl-3">the</span><span class="hl-1"> </span><span class="hl-3">timeout</span><span class="hl-1"> </span><span class="hl-3">value</span><span class="hl-1">, </span><span class="hl-12">if</span><span class="hl-1"> </span><span class="hl-0">this</span><span class="hl-1"> </span><span class="hl-3">is</span><span class="hl-1"> </span><span class="hl-3">a</span><span class="hl-1"> </span><span class="hl-3">long</span><span class="hl-1">-</span><span class="hl-3">running</span><span class="hl-1"> </span><span class="hl-3">test</span><span class="hl-1">.</span><span class="hl-4">&quot;</span>
+</code></pre>
+<pre><code class="language-js"><span class="hl-8">// jest.config.js</span><br/><br/><span class="hl-5">module</span><span class="hl-1">.</span><span class="hl-5">exports</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">    </span><span class="hl-3">testTimeout:</span><span class="hl-1"> </span><span class="hl-7">20000</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#jasmine-is-not-defined" id="jasmine-is-not-defined" style="color: inherit; text-decoration: none;">
+  <h3>jasmine is not defined</h3>
+</a>
+<p>即使在 <code>test/boot.ts</code> 中做好配置，引入 <code>jasmine-ajax</code> 时会报错，因为在这个插件中直接使用了 <code>jasmine</code>。</p>
+<pre><code class="language-js"><span class="hl-8">// test/boot.ts</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-6">JasmineCore</span><span class="hl-1"> = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-4">&#39;jasmine-core&#39;</span><span class="hl-1">)</span><br/><span class="hl-8">// @ts-ignore</span><br/><span class="hl-3">global</span><span class="hl-1">.</span><span class="hl-2">getJasmineRequireObj</span><span class="hl-1"> = </span><span class="hl-0">function</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-12">return</span><span class="hl-1"> </span><span class="hl-3">JasmineCore</span><br/><span class="hl-1">}</span><br/><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-4">&#39;jasmine-ajax&#39;</span><span class="hl-1">)  </span><span class="hl-8">// ReferenceError: jasmine is not defined</span>
+</code></pre>
+<p>解决方法是配置 testRunner:</p>
+<pre><code class="language-js"><span class="hl-8">// jest.config.js</span><br/><br/><span class="hl-5">module</span><span class="hl-1">.</span><span class="hl-5">exports</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">    </span><span class="hl-3">testRunner:</span><span class="hl-1"> </span><span class="hl-4">&#39;jest-jasmine2&#39;</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#requestresponsetimeout-报错" id="requestresponsetimeout-报错" style="color: inherit; text-decoration: none;">
+  <h3>request.responseTimeout 报错</h3>
+</a>
+<pre><code class="language-js"><span class="hl-2">getAjaxRequest</span><span class="hl-1">().</span><span class="hl-2">then</span><span class="hl-1">(</span><span class="hl-3">request</span><span class="hl-1"> </span><span class="hl-0">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">request</span><span class="hl-1">.</span><span class="hl-2">responseTimeout</span><span class="hl-1">() </span><span class="hl-8">// jasmine.clock is not a function</span><br/><span class="hl-1">})</span>
+</code></pre>
+<p>由于 <code>request.responseTimeout</code> 方法内部依赖了 <code>jasmine.clock</code> 方法会导致运行失败，可以直接用 <code>request.eventBus.trigger(&#39;timeout&#39;)</code> 方法触发 timeout 事件。</p>
+<pre><code class="language-js"><span class="hl-2">getAjaxRequest</span><span class="hl-1">().</span><span class="hl-2">then</span><span class="hl-1">(</span><span class="hl-3">request</span><span class="hl-1"> </span><span class="hl-0">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-8">// 模拟请求超时</span><br/><span class="hl-1">    </span><span class="hl-3">request</span><span class="hl-1">.</span><span class="hl-3">eventBus</span><span class="hl-1">.</span><span class="hl-2">trigger</span><span class="hl-1">(</span><span class="hl-4">&#39;timeout&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">})</span>
+</code></pre>
+
+<a href="#fail-方法" id="fail-方法" style="color: inherit; text-decoration: none;">
+  <h3>fail 方法</h3>
+</a>
+<p>在用例中可以直接使用 <code>fail</code> 方法，表示一个测试的失败。</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-interface"><a href="interfaces/Axios.html" class="tsd-kind-icon">Axios</a></li><li class="tsd-kind-interface"><a href="interfaces/AxiosBasicCredentials.html" class="tsd-kind-icon">Axios<wbr/>Basic<wbr/>Credentials</a></li><li class="tsd-kind-interface"><a href="interfaces/AxiosClassStatic.html" class="tsd-kind-icon">Axios<wbr/>Class<wbr/>Static</a></li><li class="tsd-kind-interface"><a href="interfaces/AxiosError.html" class="tsd-kind-icon">Axios<wbr/>Error</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AxiosInstance.html" class="tsd-kind-icon">Axios<wbr/>Instance</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AxiosInterceptorManager.html" class="tsd-kind-icon">Axios<wbr/>Interceptor<wbr/>Manager</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AxiosPromise.html" class="tsd-kind-icon">Axios<wbr/>Promise</a></li><li class="tsd-kind-interface"><a href="interfaces/AxiosRequestConfig.html" class="tsd-kind-icon">Axios<wbr/>Request<wbr/>Config</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AxiosResponse.html" class="tsd-kind-icon">Axios<wbr/>Response</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/AxiosStatic.html" class="tsd-kind-icon">Axios<wbr/>Static</a></li><li class="tsd-kind-interface"><a href="interfaces/AxiosTransformer.html" class="tsd-kind-icon">Axios<wbr/>Transformer</a></li><li class="tsd-kind-interface"><a href="interfaces/Cancel.html" class="tsd-kind-icon">Cancel</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelExecutor.html" class="tsd-kind-icon">Cancel<wbr/>Executor</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelStatic.html" class="tsd-kind-icon">Cancel<wbr/>Static</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelToken.html" class="tsd-kind-icon">Cancel<wbr/>Token</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelTokenSource.html" class="tsd-kind-icon">Cancel<wbr/>Token<wbr/>Source</a></li><li class="tsd-kind-interface"><a href="interfaces/CancelTokenStatic.html" class="tsd-kind-icon">Cancel<wbr/>Token<wbr/>Static</a></li><li class="tsd-kind-interface"><a href="interfaces/Canceler.html" class="tsd-kind-icon">Canceler</a></li><li class="tsd-kind-interface"><a href="interfaces/RejectedFn.html" class="tsd-kind-icon">Rejected<wbr/>Fn</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/ResolvedFn.html" class="tsd-kind-icon">Resolved<wbr/>Fn</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Method" class="tsd-kind-icon">Method</a></li><li class="tsd-kind-variable"><a href="modules.html#default" class="tsd-kind-icon">default</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
